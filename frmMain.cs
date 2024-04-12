@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MiColmado.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -46,6 +48,7 @@ namespace MiColmado
             _obj = this;
             //para que aparezca el nombre de usuario en la barra lateral
             lbusuario.Text = MainClass.USER;
+            pictureBox1.Image = MainClass.IMG;
 
         }
         
@@ -85,7 +88,7 @@ namespace MiColmado
 
         private void btnCategoria_Click(object sender, EventArgs e)
         {
-
+            AddControls(new frmCategoria());
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -98,6 +101,16 @@ namespace MiColmado
         {
             frmLogin frml = new frmLogin();
             frml.Show();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnProveedores_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

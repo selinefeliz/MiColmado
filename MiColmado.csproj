@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Configuration.ConfigurationBuilders.Base, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Configuration.ConfigurationBuilders.Base.2.0.0\lib\Net471\Microsoft.Configuration.ConfigurationBuilders.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -82,10 +85,20 @@
     <Compile Include="frmUserView.Designer.cs">
       <DependentUpon>frmUserView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiColmadoSQLDataSet.Designer.cs">
+    <Compile Include="IfrmUserView.cs" />
+    <Compile Include="micolmadoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MiColmadoSQLDataSet.xsd</DependentUpon>
+      <DependentUpon>micolmadoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MiColmadoSQLDataSet.cs" />
+    <Compile Include="MiColmadoSQLDataSetTableAdapters.cs" />
+    <Compile Include="MiColmadoSQLDataSetTableAdapters\usersTableAdapter.cs" />
+    <Compile Include="Model\frmcategoryAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\frmcategoryAdd.Designer.cs">
+      <DependentUpon>frmcategoryAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\frmUserAdd.cs">
       <SubType>Form</SubType>
@@ -126,6 +139,7 @@
     <Compile Include="SampleView.Designer.cs">
       <DependentUpon>SampleView.cs</DependentUpon>
     </Compile>
+    <Compile Include="txtSearch.cs" />
     <EmbeddedResource Include="frmCategoria.resx">
       <DependentUpon>frmCategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserView.resx">
       <DependentUpon>frmUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\frmcategoryAdd.resx">
+      <DependentUpon>frmcategoryAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Model\frmUserAdd.resx">
       <DependentUpon>frmUserAdd.cs</DependentUpon>
@@ -163,17 +180,19 @@
     <EmbeddedResource Include="SampleView.resx">
       <DependentUpon>SampleView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="MiColmadoSQLDataSet.xsc">
-      <DependentUpon>MiColmadoSQLDataSet.xsd</DependentUpon>
+    <None Include=".editorconfig" />
+    <None Include="micolmadoDataSet.xsc">
+      <DependentUpon>micolmadoDataSet.xsd</DependentUpon>
     </None>
-    <None Include="MiColmadoSQLDataSet.xsd">
+    <None Include="micolmadoDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MiColmadoSQLDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>micolmadoDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="MiColmadoSQLDataSet.xss">
-      <DependentUpon>MiColmadoSQLDataSet.xsd</DependentUpon>
+    <None Include="micolmadoDataSet.xss">
+      <DependentUpon>micolmadoDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,7 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace MiColmado
 {
@@ -23,7 +24,7 @@ namespace MiColmado
         public override void btnSave_Click(object sender, EventArgs e)
         {
             //antes de guardar la imagen se necesita validacion
-            if (MainClass.Validation(this)==false)
+            if (MainClass.Validation(this) == false)
             {
                 MessageBox.Show("Complete los campos requeridos", "Errores encontrados", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -38,7 +39,7 @@ namespace MiColmado
                 }
                 else //actualizar
                 {
-                    qry = @"UPDATE users set userName = @userName
+                    qry = @"UPDATE users set userName =@userName,
                                 upass = @pass,
                                 uName =@name,
                                 uPhone = @phone,
@@ -46,13 +47,13 @@ namespace MiColmado
                                 where userID = @id";
 
                 }
-                
+
                 Image temp = new Bitmap(txtPic.Image);
                 MemoryStream ms = new MemoryStream();
-                temp.Save(ms,System.Drawing.Imaging.ImageFormat.Png);
+                temp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 imageByteArray = ms.ToArray();
 
-                Hashtable ht = new Hashtable();
+                System.Collections.Hashtable ht = new System.Collections.Hashtable();
                 ht.Add("@id", id);
                 ht.Add("@userName", txtUserName.Text);
                 ht.Add("@pass", txtPass.Text);
@@ -60,7 +61,7 @@ namespace MiColmado
                 ht.Add("@phone", txtPhone.Text);
                 ht.Add("@image", imageByteArray);
 
-                if (MainClass.SQL(qry,ht)>0)
+                if (MainClass.SQL(qry, ht) > 0)
                 {
                     MessageBox.Show("Datos Guardados correctamente", "INFORMACION", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     id = 0;
@@ -74,7 +75,7 @@ namespace MiColmado
 
             }
         }
-        private void frmUserAdd_Load(object sender, EventArgs e)
+        private void FrmUserAdd_Load(object sender, EventArgs e)
         {
 
         }
@@ -112,12 +113,40 @@ namespace MiColmado
             }
         }
 
+        private void LoadImage()
+        {
+            string qry = @"Select uImage from Users where userID = " + id + "";
+            SqlCommand cmd = new SqlCommand();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            if (dt.Rows.Count > 0) 
+            {
+                    Byte[] imageArray = (byte[])dt.Rows[0]["uImage"];
+                    byte[] imageByteArray = imageArray;
+                    txtPic.Image = Image.FromStream(new MemoryStream(imageByteArray));
+            }
+        }
+
+        private void frmUserAdd_Load(object sender, EventArgs e)
+        {
+            if (id>0)
+            {
+                LoadImage();
+            }
+        }
+
+        private void txtPass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtName_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void txtPass_TextChanged(object sender, EventArgs e)
+        private void frmUserAdd_Load_1(object sender, EventArgs e)
         {
 
         }
