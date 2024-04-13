@@ -29,7 +29,7 @@ namespace MiColmado
         {
             bool isValid = false;
 
-            string qry = @"Select * from users where username = '" + username + "' and upass = '" + password + "' ";
+            string qry = @"Select * from users where Uusername = '" + username + "' and uPass = '" + password + "' ";
             SqlCommand cmd = new SqlCommand(qry, con);
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -241,6 +241,16 @@ namespace MiColmado
             }
 
             return isValid;
+        }
+
+        internal static void LoadData(string qry)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void LoadData(string qry, object dataGridView1)
+        {
+            throw new NotImplementedException();
         }
     }
 }

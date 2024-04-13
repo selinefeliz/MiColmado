@@ -22,6 +22,16 @@ namespace MiColmado
         //descomentar si quieres logearte con un usuario
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (MainClass.IsValidUser(txtUsuario.Text, txtContrasena.Text) == true)
+            {
+                this.Hide();
+                frmMain frm = new frmMain();
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             ////validando las credenciales del usuario
             if ((MainClass.IsValidUser(txtUsuario.Text, txtContrasena.Text)) == false)
             {
@@ -31,6 +41,7 @@ namespace MiColmado
             }
             else
             {
+
 
                 ///Para que se abra el form que sigue despues de logearse
                 this.Hide();
@@ -43,6 +54,9 @@ namespace MiColmado
             //this.Hide();
             //frmMain frm = new frmMain();
             //frm.Show();
+
+            //    ///Para que se abra el form que sigue despues de logearse
+
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -72,7 +86,7 @@ namespace MiColmado
 
         private void txtContrasena_TextChanged(object sender, EventArgs e)
         {
-
+           
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -87,9 +101,8 @@ namespace MiColmado
 
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
-
+           
         }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -131,6 +144,8 @@ namespace MiColmado
             {
                 Application.Exit(); // Cerrar la aplicación
             }
+           
+
 
         }
     }
